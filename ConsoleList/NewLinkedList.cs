@@ -78,43 +78,23 @@ namespace ConsoleList
             {
                 
             }
-            // 1: Пустой список: ничего не делать.
-            // 2: Один элемент: установить Previous = null.
-            // 3: Несколько элементов:
-            //    a: Удаляемый элемент первый.
-            //    b: Удаляемый элемент в середине или конце.
-
             while (current != null)
             {
                 if (current.Value.Equals(item))
                 {
-                    // Узел в середине или в конце.
+                 
                     if (previous != null)
                     {
-                        // Случай 3b.
+                       previous.NextNode = current.NextNode;
 
-                        // До:    Head -> 3 -> 5 -> null
-                        // После: Head -> 3 ------> null
-                        previous.NextNode = current.NextNode;
-
-                        // Если в конце, то меняем _tail.
-                        if (current.NextNode == null)
+                       if (current.NextNode == null)
                         {
                             _last = previous;
                         }
                     }
                     else
                     {
-                        // Случай 2 или 3a.
-
-                        // До:    Head -> 3 -> 5
-                        // После: Head ------> 5
-
-                        // Head -> 3 -> null
-                        // Head ------> null
                         _first = _first.NextNode;
-
-                        // Список теперь пустой?
                         if (_first == null)
                         {
                             _last = null;

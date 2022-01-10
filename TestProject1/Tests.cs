@@ -1,5 +1,4 @@
-﻿using System;
-using ConsoleList;
+﻿using ConsoleList;
 using NUnit.Framework;
 
 namespace TestProject1
@@ -45,7 +44,20 @@ namespace TestProject1
             Assert.IsFalse(list.Contains("five"));
             Assert.IsTrue(list.Contains("two"));
             Assert.IsTrue(list.Contains("four"));
-            var enumerator = list.GetEnumerator();
+        }
+        
+        [Test]
+        public void CopyTest()
+        {
+            var list = new NewLinkedList<string>();  
+            list.Add("one");
+            list.Add("two");
+            list.Add("three");
+            list.Add("four");
+            list.Add("five");
+            var newList = new string[10];
+            list.CopyTo(newList,3);
+            Assert.AreEqual(newList[3],"one");
         }
     }
 }
